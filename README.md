@@ -19,7 +19,7 @@ This repository contains a minimal fast-api backend and streamlit web frontend, 
     ```bash
     docker exec -it api pytest
     ```
-- All python applications have a `Dockerfile` to package all the requirements in a single executable environment.s
+- All python applications have a `Dockerfile` to package all the requirements in a single executable environment.
 - The requirements are all pinned in a `requirements.txt` file for a deterministic runtime environment.
 - All functions and their parameters are well documented using `docstrings`.
 - The formatting of code across repos have been managed by `black`.

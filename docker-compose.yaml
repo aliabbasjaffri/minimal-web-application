@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+    frontend:
+        build: frontend-application
+        container_name: "web-ui"
+        ports:
+            - 8501:8501
+    backend:
+        build: url-shortener
+        container_name: "api"
+        environment:
+            - DB_CONNECTION=mongodb
+            - MONGO_DB_NAME=url-shorten-db
+            - MONGODB_USERNAME=root
+            - MONGODB_PASS=rootpassword
+        ports:
+            - 5000:5000
+        depends_on:
+            - database
+    database:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+            MONGO_INITDB_DATABASE: url-shorten-db
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: rootpassword
+        ports:
+            - 27017:27017
+        volumes:
+            - mongodb_data_container:/data/db
+volumes:
+  mongodb_data_container:
